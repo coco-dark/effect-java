@@ -46,4 +46,5 @@ public class Stack {
         System.out.println(pop);
         System.out.println(stack);
     }
+
 }
