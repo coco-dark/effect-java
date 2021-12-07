@@ -1,6 +1,21 @@
 package com.example.stack;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import javax.crypto.*;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
+import javax.management.openmbean.InvalidKeyException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.EmptyStackException;
 
 public class Stack {
@@ -37,14 +52,12 @@ public class Stack {
                 ", size=" + size +
                 '}';
     }
-
     public static void main(String[] args) {
-        Stack stack=new Stack();
+        Stack stack = new Stack();
         stack.push(1);
         stack.push("value");
         Object pop = stack.pop();
         System.out.println(pop);
         System.out.println(stack);
     }
-
 }

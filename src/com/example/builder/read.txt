@@ -1,0 +1,50 @@
+建造者模式:
+    1,用于对于多参数,多构造器的类
+    2,有利于实现参数的动态设置,同时程序员能够根据方法名来区别需要传入的参数
+    父类:
+    public abstract class Book{
+        private final String name;
+
+        public static class BookBuilder<T extend BookBuilder<T>>{
+            private String name;
+
+            public T name(String name){
+                this.name=name;
+                return self();
+            }
+
+            abstract Book build();
+
+            protected abstract T self();
+        }
+
+        public Book(BookBuilder<?> builder){
+            this.name=builder.name;
+        }
+    }
+    子类:
+    public class RedBook{
+        private final String color;
+
+        public static class Builder extend Book.BookBuilder<Builder>{
+            private String color;
+
+            public Builder color(String color){
+                this.color=color;
+                return this;
+            }
+
+            public RedBook build(){
+                return new RedBook(this);
+            }
+
+            protected abstract Builder self(){
+                return this;
+            }
+        }
+
+        public Book(Builder<?> builder){
+            super(builder)
+            this.color=builder.color;
+        }
+    }
